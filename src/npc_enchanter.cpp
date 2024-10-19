@@ -1128,17 +1128,17 @@ public:
         // Random enchantment notification
         if (roll > 0 && roll < 33)
         {
-            ChatHandler(player->GetSession()).SendNotification("|cff00ff00Beauregard's bony finger crackles with energy when he touches |cffDA70D6%s|cff00ff00!", item->GetTemplate()->Name1.c_str());
+            ChatHandler(player->GetSession()).SendNotification("|cff00ff00Beauregard's bony finger crackles with energy when he touches |cffDA70D6{}|cff00ff00!", item->GetTemplate()->Name1.c_str());
             // creature->HandleEmoteCommand(EMOTE_ONESHOT_POINT);
         }
         else if (roll > 33 && roll < 75)
         {
-            ChatHandler(player->GetSession()).SendNotification("|cff00ff00Beauregard holds |cffDA70D6%s |cff00ff00up in the air and utters a strange incantation!", item->GetTemplate()->Name1.c_str());
+            ChatHandler(player->GetSession()).SendNotification("|cff00ff00Beauregard holds |cffDA70D6{}|cff00ff00up in the air and utters a strange incantation!", item->GetTemplate()->Name1.c_str());
             // creature->HandleEmoteCommand(EMOTE_ONESHOT_CHEER);
         }
         else
         {
-            ChatHandler(player->GetSession()).SendNotification("|cff00ff00Beauregard concentrates deeply while waving his wand over |cffDA70D6%s|cff00ff00!", item->GetTemplate()->Name1.c_str());
+            ChatHandler(player->GetSession()).SendNotification("|cff00ff00Beauregard concentrates deeply while waving his wand over |cffDA70D6{}|cff00ff00!", item->GetTemplate()->Name1.c_str());
             // creature->HandleEmoteCommand(EMOTE_ONESHOT_WAVE);
         }
         creature->CastSpell(player, 12512); // enchantment visual
