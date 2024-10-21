@@ -69,6 +69,7 @@ This code and content is released under the [GNU AGPL v3](https://github.com/aze
 #include "SpellScript.h"
 #include "SpellAuraEffects.h"
 #include "Player.h"
+#include "mod-boost.h"
 
 enum Enchants
 {
@@ -278,26 +279,30 @@ public:
             return false;
         }
 
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_mace_116:24:24:-18|t[Enchant Main Weapon]", GOSSIP_SENDER_MAIN, 1);
-        if (player->HasSpell(674))
-        {
-            AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_mace_116:24:24:-18|t[Enchant Offhand Weapon]", GOSSIP_SENDER_MAIN, 13);
+        if (isPlayerBoostable(player)) {
+
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_mace_116:24:24:-18|t[Enchant Main Weapon]", GOSSIP_SENDER_MAIN, 1);
+            if (player->HasSpell(674))
+            {
+                AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_mace_116:24:24:-18|t[Enchant Offhand Weapon]", GOSSIP_SENDER_MAIN, 13);
+            }
+
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_axe_113:24:24:-18|t[Enchant 2H Weapon]", GOSSIP_SENDER_MAIN, 2);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_shield_71:24:24:-18|t[Enchant Shield]", GOSSIP_SENDER_MAIN, 3);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_helmet_29:24:24:-18|t[Enchant Head]", GOSSIP_SENDER_MAIN, 4);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_shoulder_23:24:24:-18|t[Enchant Shoulders]", GOSSIP_SENDER_MAIN, 5);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_misc_cape_18:24:24:-18|t[Enchant Cloak]", GOSSIP_SENDER_MAIN, 6);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_chest_cloth_04:24:24:-18|t[Enchant Chest]", GOSSIP_SENDER_MAIN, 7);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_bracer_14:24:24:-18|t[Enchant Bracers]", GOSSIP_SENDER_MAIN, 8);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_gauntlets_06:24:24:-18|t[Enchant Gloves]", GOSSIP_SENDER_MAIN, 9);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_pants_11:24:24:-18|t[Enchant Legs]", GOSSIP_SENDER_MAIN, 10);
+            AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_boots_05:24:24:-18|t[Enchant Boots]", GOSSIP_SENDER_MAIN, 11);
+
+            if (player->HasSkill(SKILL_ENCHANTING) && player->GetSkillValue(SKILL_ENCHANTING) == 450)
+                AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_jewelry_ring_85:24:24:-18|t[Enchant Rings]", GOSSIP_SENDER_MAIN, 12);
+
         }
-
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_axe_113:24:24:-18|t[Enchant 2H Weapon]", GOSSIP_SENDER_MAIN, 2);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_shield_71:24:24:-18|t[Enchant Shield]", GOSSIP_SENDER_MAIN, 3);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_helmet_29:24:24:-18|t[Enchant Head]", GOSSIP_SENDER_MAIN, 4);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_shoulder_23:24:24:-18|t[Enchant Shoulders]", GOSSIP_SENDER_MAIN, 5);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_misc_cape_18:24:24:-18|t[Enchant Cloak]", GOSSIP_SENDER_MAIN, 6);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_chest_cloth_04:24:24:-18|t[Enchant Chest]", GOSSIP_SENDER_MAIN, 7);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_bracer_14:24:24:-18|t[Enchant Bracers]", GOSSIP_SENDER_MAIN, 8);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_gauntlets_06:24:24:-18|t[Enchant Gloves]", GOSSIP_SENDER_MAIN, 9);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_pants_11:24:24:-18|t[Enchant Legs]", GOSSIP_SENDER_MAIN, 10);
-        AddGossipItemFor(player, 1, "|TInterface/ICONS/inv_boots_05:24:24:-18|t[Enchant Boots]", GOSSIP_SENDER_MAIN, 11);
-
-        if (player->HasSkill(SKILL_ENCHANTING) && player->GetSkillValue(SKILL_ENCHANTING) == 450)
-            AddGossipItemFor(player, 1, "|TInterface/ICONS/Inv_jewelry_ring_85:24:24:-18|t[Enchant Rings]", GOSSIP_SENDER_MAIN, 12);
-
+        
         player->PlayerTalkClass->SendGossipMenu(601015, creature->GetGUID());
         return true;
     }
