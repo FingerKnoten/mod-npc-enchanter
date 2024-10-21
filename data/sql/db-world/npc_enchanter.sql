@@ -36,3 +36,8 @@ INSERT INTO `creature_equip_template` VALUES (@Entry, 1, 11343, 0, 0, 18019); --
 -- NPC TEXT
 DELETE FROM `npc_text` WHERE `ID`=@Entry;
 INSERT INTO `npc_text` (`ID`, `text0_0`) VALUES (@Entry, 'Good day $N. Beauregard Boneglitter at your service. I offer a vast array of gear enchantments for the aspiring adventurer.');
+
+-- creature
+DELETE FROM `creature` WHERE `id1` IN (@Entry);
+INSERT INTO `creature` (`id1`, `map`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES (@Entry, 0, -8829.99, 646.351, 94.6191, 5.57755);
+INSERT INTO `creature` (`id1`, `map`, `position_x`, `position_y`, `position_z`, `orientation`) VALUES (@Entry, 1, 1635.87, -4410.82, 16.6039, 0.104439);
